@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shashank Corona Map</title>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.0/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id='map'></div>
+    <div id='info'></div>
+    <!-- <div id="coordinates" class="coordinates"></div> -->
+    <footer>
+        <p>Copyrights &copy;2021 | All rights reserved  </p>
+        <p>Last updated : 27 March 2020</p>
+    </footer>
+</body>
+
+
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoic2hhc2hhbmttYW5rYWxhIiwiYSI6ImNrcTd2Z241ZjBhMGUyb3Q4cWxycTlxZ2kifQ.ZJbHLhpE7X2EFw7j0wITMw';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/dark-v10',
+        zoom: 1,
+        center: [0, 20]
+    });
+
+    map.on('mousemove', function (e) {
+        document.getElementById('info').innerHTML =
+            JSON.stringify(e.point) +
+            '<br />' +
+            JSON.stringify(e.lngLat.wrap())
+
+    });
+    map.on('mouseenter', 'id', function () {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change it back to a pointer when it leaves.
+    map.on('mouseleave', 'id', function () {
+        map.getCanvas().style.cursor = '';
+    });
+    // ==============================================
+    // var coordinates = document.getElementById('coordinates');
+
+    // var marker = new mapboxgl.Marker({
+    //     draggable: true
+    // })
+    //     .setLngLat([longitude, latitude])
+    //     .addTo(map);
+    // function onDragEnd() {
+    //     var lngLat = marker.getLngLat();
+    //     coordinates.style.display = 'block';
+    //     coordinates.innerHTML =
+    //         'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+    // }
+    // marker.on('dragend', onDragEnd);
+</script>
+
+
+<script src="js/index.js"></script>
+
+</html>
